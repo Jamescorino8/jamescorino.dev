@@ -1,4 +1,17 @@
 export const PROJECTS = [
+    {
+    name: 'grounding dino as a face localizer for deepfake detection',
+    year: '2026',
+    desc: "Can an open-vocabulary object detector find faces well enough to be the first stage of a deepfake-detection pipeline, handing crops to a forensic classifier? That was the question I spent the summer on at SKKU's InfoLab.",
+    details: [
+      'I evaluated Grounding DINO (Swin-T) on a 45-image set I curated across six conditions: frontal, profile, occluded, multiple faces, small and low-resolution, and deepfake frames. I ran five text prompts against each condition and swept box and text thresholds across three settings, then built tooling to keep the runs reproducible: a batch inference tool writing per-image predictions as JSON and CSV beside a run config capturing the exact command, arguments, device, library versions and git commit.',
+      'Frontal, profile and moderately occluded faces are located reliably with the prompt "human face". No single threshold works everywhere: raising it removes duplicate boxes on easy faces but drops harder profile faces entirely. Dense crowds fail outright, with roughly 30 to 40 pixel faces returning zero detections on four of five prompts, and only two low-confidence boxes at the most permissive setting. That is a resolution limit, not a tuning one.',
+      'The most useful finding was negative. Prompting "real face" and "manipulated face" returns nearly the same boxes as "human face", 1.25 against 1.17 against 1.33 boxes per image. The model matches the concept of a face, not its authenticity, which is the argument for using it for localization only and leaving the forensic judgment to stage two.',
+      'Results are measured by box counts and confidence scores rather than ground-truth annotations, so they describe behavior, not precision and recall.',
+    ],
+    tags: ['python', 'pytorch', 'grounding dino', 'vision-language models', 'zero-shot detection'],
+    link: 'https://github.com/Jamescorino8/deepfake-face-localization',
+  },
   {
     name: 'seoul transit & weather analysis',
     year: '2026',
